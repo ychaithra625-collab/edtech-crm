@@ -11,7 +11,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: process.env.FRONTEND_URL || "http://localhost:5173"
 }));
 
 app.use(express.json());
@@ -359,6 +359,6 @@ app.put("/api/admin/inquiries/:id/status", authenticateToken, async (req, res) =
 });
 
 
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server listening on port ${PORT}`);
 });
